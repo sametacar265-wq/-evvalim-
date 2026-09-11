@@ -7,104 +7,49 @@
 <title>Şevvalim ❤️</title>
 
 <style>
-
-/* =========================
-   GENEL AYARLAR
-========================= */
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
     min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: white;
     overflow-x: hidden;
 
-    font-family: Georgia, "Times New Roman", serif;
-
-    color: white;
-
-    /* SİYAH - YEŞİL - KIRMIZI - SARI ÇİZGİLİ ARKA PLAN */
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #080808 0px,
-            #080808 55px,
-
-            #174d31 55px,
-            #174d31 110px,
-
-            #8e1825 110px,
-            #8e1825 165px,
-
-            #b69a20 165px,
-            #b69a20 220px
-        );
+    background: repeating-linear-gradient(
+        0deg,
+        #050505 0px,
+        #050505 65px,
+        #174d2b 65px,
+        #174d2b 130px,
+        #8b1522 130px,
+        #8b1522 195px,
+        #b99b18 195px,
+        #b99b18 260px
+    );
 }
 
-
-/* Arka planı biraz karartır */
-
-body::before {
-    content: "";
+/* Düşen güller ve kalpler */
+#rain {
     position: fixed;
-
     inset: 0;
-
-    background: rgba(0,0,0,0.25);
-
-    pointer-events: none;
-
-    z-index: -1;
-}
-
-
-/* =========================
-   DÜŞEN GÜL VE KALPLER
-========================= */
-
-#falling {
-    position: fixed;
-
-    inset: 0;
-
     overflow: hidden;
-
     pointer-events: none;
-
     z-index: 1;
 }
 
 .fall {
     position: absolute;
-
-    top: -80px;
-
-    user-select: none;
-
-    animation: fall linear infinite;
-
-    opacity: 0.9;
-
-    filter:
-        drop-shadow(
-            0 3px 5px rgba(0,0,0,0.4)
-        );
+    top: -60px;
+    animation: falling linear infinite;
 }
 
-@keyframes fall {
-
+@keyframes falling {
     0% {
-        transform:
-            translateY(-100px)
-            rotate(0deg);
-
+        transform: translateY(-80px) rotate(0deg);
         opacity: 0;
     }
 
@@ -113,562 +58,230 @@ body::before {
     }
 
     50% {
-        transform:
-            translate(35px,55vh)
-            rotate(150deg);
+        transform: translate(40px, 50vh) rotate(180deg);
     }
 
     100% {
-        transform:
-            translate(-45px,115vh)
-            rotate(330deg);
-
+        transform: translate(-40px, 110vh) rotate(360deg);
         opacity: 0;
     }
 }
 
-
-/* =========================
-   SAYFALAR
-========================= */
-
+/* Sayfalar */
 .page {
-
     min-height: 100vh;
-
-    width: 100%;
-
-    padding:
-        35px 18px 90px;
-
     display: none;
-
+    align-items: center;
+    justify-content: center;
+    padding: 25px 15px 70px;
     position: relative;
-
     z-index: 2;
 }
 
 .page.active {
-
     display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
 }
 
+/* Ana kutu */
+.box {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(0,0,0,0.72);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 25px;
+    padding: 35px 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+}
 
-/* =========================
-   ANA SAYFA
-========================= */
-
+/* Ana sayfa */
 .home {
-
-    justify-content: center;
-
     text-align: center;
 }
 
-.card {
-
-    width: min(900px,100%);
-
-    padding: 38px 25px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.3);
-
-    border-radius: 28px;
-
-    background:
-        rgba(0,0,0,0.62);
-
-    backdrop-filter: blur(7px);
-
-    -webkit-backdrop-filter: blur(7px);
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.5);
-}
-
-
-/* BAŞLIK */
-
 h1 {
-
-    font-size:
-        clamp(50px,10vw,90px);
-
+    font-size: clamp(50px, 12vw, 90px);
     font-style: italic;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 12px;
-
-    text-shadow:
-        0 5px 20px
-        rgba(0,0,0,0.9);
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 0 5px 20px black;
 }
 
-
-/* Alt yazı */
-
-.subtitle {
-
-    font-size:
-        clamp(17px,3.5vw,23px);
-
-    font-style: italic;
-
+.intro {
+    font-size: clamp(17px, 4vw, 23px);
     line-height: 1.7;
-
-    color: #f8eeee;
-
-    margin-bottom: 32px;
+    font-style: italic;
+    margin-bottom: 30px;
 }
 
-
-/* =========================
-   BUTONLAR
-========================= */
-
+/* Butonlar */
 .buttons {
-
-    width: min(680px,100%);
-
-    margin: auto;
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 700px;
+    margin: auto;
 }
-
 
 .btn {
-
-    border:
-        1px solid
-        rgba(255,255,255,0.4);
-
+    min-height: 65px;
+    border: 1px solid rgba(255,255,255,0.45);
     border-radius: 18px;
 
-    padding: 19px 14px;
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.18),
+        rgba(0,0,0,0.45)
+    );
 
     color: white;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.16),
-            rgba(0,0,0,0.35)
-        );
-
-    box-shadow:
-        0 8px 22px
-        rgba(0,0,0,0.35);
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 20px;
-
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
     font-weight: bold;
-
     font-style: italic;
 
     cursor: pointer;
-
-    transition:
-        0.25s ease;
+    transition: 0.25s;
 }
-
 
 .btn:hover {
-
-    transform:
-        translateY(-4px)
-        scale(1.02);
-
-    background:
-        rgba(255,255,255,0.22);
-
-    box-shadow:
-        0 13px 30px
-        rgba(0,0,0,0.5);
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.25);
 }
 
-
-/* =========================
-   İÇ SAYFALAR
-========================= */
-
-.section-card {
-
-    width: min(900px,100%);
-
-    padding: 30px 24px;
-
-    border-radius: 26px;
-
-    background:
-        rgba(0,0,0,0.64);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.3);
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.5);
-}
-
-
-/* Sayfa başlıkları */
-
-.page-title {
-
+/* İç sayfa başlığı */
+.title {
     text-align: center;
-
-    font-size:
-        clamp(35px,7vw,60px);
-
+    font-size: clamp(35px, 8vw, 60px);
     font-style: italic;
-
-    margin-bottom: 28px;
-
-    text-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.8);
+    margin-bottom: 30px;
 }
 
-
-/* =========================
-   ŞİİRLER
-========================= */
-
+/* Şiir */
 .poem {
-
     text-align: center;
-
-    padding: 20px 8px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.18);
-}
-
-.poem:last-child {
-
-    border-bottom: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 20px 5px;
 }
 
 .poem p {
-
-    font-size:
-        clamp(17px,3.7vw,22px);
-
-    line-height: 1.75;
-
+    font-size: clamp(17px, 4vw, 22px);
+    line-height: 1.8;
     font-style: italic;
-
-    margin: 6px 0;
+    margin: 7px 0;
 }
 
-
-/* =========================
-   FOTOĞRAFLAR
-========================= */
-
-.photos {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap: 16px;
-}
-
-
-.photo {
-
-    width: 100%;
-
-    aspect-ratio: 3 / 4;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.35);
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.5);
-}
-
-
-.photo img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: 0.4s;
-}
-
-
-.photo:hover img {
-
-    transform: scale(1.05);
-}
-
-
-/* =========================
-   SEN VE BEN
-========================= */
-
-.proposal {
-
+/* Sen ve Ben */
+.letter {
     text-align: center;
 }
 
-.proposal p {
-
-    font-size:
-        clamp(18px,4vw,24px);
-
+.letter p {
+    font-size: clamp(18px, 4vw, 23px);
     line-height: 1.9;
-
     font-style: italic;
-
     margin-bottom: 25px;
 }
 
-
 .question {
-
-    font-size:
-        clamp(24px,5vw,35px) !important;
-
+    font-size: clamp(24px, 5vw, 35px) !important;
     font-weight: bold;
-
-    margin-top: 20px;
 }
 
-
-.love {
-
+.heart {
     font-size: 55px;
-
-    margin-top: 15px;
-
-    animation:
-        pulse 1.8s
-        ease-in-out
-        infinite;
+    text-align: center;
+    animation: pulse 1.5s infinite;
 }
-
 
 @keyframes pulse {
-
     50% {
         transform: scale(1.15);
     }
 }
 
-
-/* =========================
-   GERİ BUTONU
-========================= */
-
+/* Geri butonu */
 .back {
-
     display: block;
+    margin: 30px auto 0;
 
-    margin:
-        28px auto 0;
+    padding: 13px 28px;
 
-    padding:
-        13px 27px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
 
-    border-radius: 999px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.45);
-
-    background:
-        rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.65);
 
     color: white;
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 17px;
-
     font-weight: bold;
-
     font-style: italic;
 
     cursor: pointer;
-
-    transition: 0.25s;
 }
-
 
 .back:hover {
-
-    transform:
-        translateY(-3px);
-
-    background:
-        rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.2);
 }
 
+/* Telefon */
+@media (max-width: 600px) {
 
-/* =========================
-   MOBİL
-========================= */
-
-@media(max-width:600px) {
-
-    .page {
-
-        padding:
-            20px 12px 70px;
-    }
-
-    .card,
-    .section-card {
-
-        padding:
-            25px 16px;
-
-        border-radius: 22px;
+    .box {
+        padding: 25px 15px;
     }
 
     .buttons {
-
         grid-template-columns: 1fr;
     }
 
     .btn {
-
-        font-size: 18px;
-
-        padding: 17px 12px;
-    }
-
-    .photos {
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-        gap: 10px;
-    }
-
-    .photo {
-
-        border-radius: 14px;
-    }
-
-    .poem p {
-
-        line-height: 1.65;
+        min-height: 58px;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     DÜŞEN GÜLLER VE KALPLER
-========================= -->
-
-<div id="falling"></div>
+<!-- DÜŞENLER -->
+<div id="rain"></div>
 
 
 <!-- =========================
      ANA SAYFA
 ========================= -->
 
-<section
-    id="home"
-    class="page active home"
->
+<section id="home" class="page active">
 
-    <div class="card">
+    <div class="box home">
 
-        <h1>
-            Şevvalim ❤️
-        </h1>
+        <h1>Şevvalim ❤️</h1>
 
-
-        <p class="subtitle">
-
-            Kalbimdeki en güzel hikâyenin
-            başrolü sensin.<br>
-
-            Bu sayfa sana söylemek isteyip
-            de kelimelere sığdıramadığım
-            her şey için...
-
+        <p class="intro">
+            Kalbimdeki en güzel hikâyenin başrolü sensin.
+            <br>
+            Bu küçük dünya sadece senin için...
         </p>
-
 
         <div class="buttons">
 
-            <button
-                class="btn"
-                onclick="go('photos')"
-            >
+            <button class="btn" onclick="showPage('photos')">
                 📸 Fotoğraflar
             </button>
 
-
-            <button
-                class="btn"
-                onclick="go('poems')"
-            >
+            <button class="btn" onclick="showPage('poems')">
                 🍷 Şiirler
             </button>
 
-
-            <button
-                class="btn"
-                onclick="go('acrostics')"
-            >
+            <button class="btn" onclick="showPage('acrostic')">
                 📜 Akrostişler
             </button>
 
-
-            <button
-                class="btn"
-                onclick="go('youandme')"
-            >
+            <button class="btn" onclick="showPage('love')">
                 ❤️ Sen ve Ben
             </button>
 
@@ -679,74 +292,40 @@ h1 {
 </section>
 
 
-
 <!-- =========================
      FOTOĞRAFLAR
 ========================= -->
 
-<section
-    id="photos"
-    class="page"
->
+<section id="photos" class="page">
 
-    <div class="section-card">
+    <div class="box">
 
-        <h2 class="page-title">
+        <h2 class="title">
             📸 Fotoğraflar
         </h2>
 
+        <div style="
+            text-align:center;
+            font-size:20px;
+            font-style:italic;
+            line-height:1.8;
+        ">
 
-        <div class="photos">
+            <p>
+                Buraya birlikte çekildiğiniz
+                fotoğraflar gelecek. ❤️
+            </p>
 
-            <div class="photo">
-                <img
-                    src="foto1.jpeg"
-                    alt="Fotoğraf 1"
-                >
-            </div>
+            <br>
 
-            <div class="photo">
-                <img
-                    src="foto2.jpeg"
-                    alt="Fotoğraf 2"
-                >
-            </div>
-
-            <div class="photo">
-                <img
-                    src="foto3.jpeg"
-                    alt="Fotoğraf 3"
-                >
-            </div>
-
-            <div class="photo">
-                <img
-                    src="foto4.jpeg"
-                    alt="Fotoğraf 4"
-                >
-            </div>
-
-            <div class="photo">
-                <img
-                    src="foto5.jpeg"
-                    alt="Fotoğraf 5"
-                >
-            </div>
-
-            <div class="photo">
-                <img
-                    src="foto6.jpeg"
-                    alt="Fotoğraf 6"
-                >
-            </div>
+            <p>
+                Fotoğrafları GitHub'a yüklediğimizde
+                bu bölüme yerleştirebiliriz.
+            </p>
 
         </div>
 
-
-        <button
-            class="back"
-            onclick="go('home')"
-        >
+        <button class="back" onclick="showPage('home')">
             ← Geri Gel
         </button>
 
@@ -755,24 +334,19 @@ h1 {
 </section>
 
 
-
 <!-- =========================
      ŞİİRLER
 ========================= -->
 
-<section
-    id="poems"
-    class="page"
->
+<section id="poems" class="page">
 
-    <div class="section-card">
+    <div class="box">
 
-        <h2 class="page-title">
+        <h2 class="title">
             🍷 Şiirler
         </h2>
 
-
-        <article class="poem">
+        <div class="poem">
 
             <p>
                 Bakışlarında kaybolmak,
@@ -792,8 +366,7 @@ h1 {
 
             <p>
                 Seninle tanışmak tesadüf değil,
-                ömrüme yazılmış en zarif
-                mucizeydi.
+                ömrüme yazılmış en zarif mucizeydi.
             </p>
 
             <p>
@@ -803,8 +376,7 @@ h1 {
 
             <p>
                 Sadece ellerini tutmak bile
-                dünyadaki tüm fırtınaları
-                susturuyor.
+                dünyadaki tüm fırtınaları susturuyor.
             </p>
 
             <p>
@@ -821,8 +393,7 @@ h1 {
             <p>
                 Ömrümün geri kalanını
                 sadece senin kokunla
-                uyuyup uyanarak geçirmek
-                istiyorum.
+                uyuyup uyanarak geçirmek istiyorum.
             </p>
 
             <p>
@@ -830,311 +401,155 @@ h1 {
                 her nefesimde bir ömür seveceğim.
             </p>
 
-        </article>
+        </div>
 
-
-        <button
-            class="back"
-            onclick="go('home')"
-        >
+        <button class="back" onclick="showPage('home')">
             ← Geri Gel
         </button>
 
     </div>
 
 </section>
-
 
 
 <!-- =========================
      AKROSTİŞLER
 ========================= -->
 
-<section
-    id="acrostics"
-    class="page"
->
+<section id="acrostic" class="page">
 
-    <div class="section-card">
+    <div class="box">
 
-        <h2 class="page-title">
+        <h2 class="title">
             📜 Akrostişler
         </h2>
 
 
-        <!-- 1. AKROSTİŞ -->
+        <div class="poem">
 
-        <article class="poem">
+            <p>Şehrin tüm gürültüsünü susturan sesin,</p>
+            <p>En güzel mevsimi getirir yüreğime.</p>
+            <p>Varlığın bir ömre bedel, öyle derin,</p>
+            <p>Vazgeçilmez bir huzur katarsın her güne.</p>
+            <p>Anlatmaya yetmez kelimeler hislerimi,</p>
+            <p>Lütuf gibi geldin, aydınlattın dünyamı.</p>
 
-            <p>
-                Şehrin tüm gürültüsünü
-                susturan sesin,
-            </p>
-
-            <p>
-                En güzel mevsimi getirir
-                yüreğime.
-            </p>
-
-            <p>
-                Varlığın bir ömre bedel,
-                öyle derin,
-            </p>
-
-            <p>
-                Vazgeçilmez bir huzur
-                katarsın her güne.
-            </p>
-
-            <p>
-                Anlatmaya yetmez kelimeler
-                hislerimi,
-            </p>
-
-            <p>
-                Lütuf gibi geldin,
-                aydınlattın dünyamı.
-            </p>
-
-        </article>
+        </div>
 
 
+        <div class="poem">
 
-        <!-- 2. AKROSTİŞ -->
+            <p>Şahit olsun gökyüzü bu sonsuz sevgiye,</p>
+            <p>Ellerin ellerimdeyken zaman dursun isterim.</p>
+            <p>Vakit senli olunca döner bir bayrama,</p>
+            <p>Vurulmuşum gözlerine, başka ne dilerim?</p>
+            <p>Adı yankılanır kalbimin her köşesinde,</p>
+            <p>Leyla ile Mecnun halt etmiş bu aşka!</p>
 
-        <article class="poem">
-
-            <p>
-                Şahit olsun gökyüzü
-                bu sonsuz sevgiye,
-            </p>
-
-            <p>
-                Ellerin ellerimdeyken
-                zaman dursun isterim.
-            </p>
-
-            <p>
-                Vakit senli olunca
-                döner bir bayrama,
-            </p>
-
-            <p>
-                Vurulmuşum gözlerine,
-                başka ne dilerim?
-            </p>
-
-            <p>
-                Adı yankılanır kalbimin
-                her köşesinde,
-            </p>
-
-            <p>
-                Leyla ile Mecnun halt etmiş
-                bu aşka!
-            </p>
-
-        </article>
+        </div>
 
 
+        <div class="poem">
 
-        <!-- 3. AKROSTİŞ -->
+            <p>Şiirler yetersiz kalır seni yazmaya,</p>
+            <p>Eşsiz bir tebessümün var, dünyalara değer.</p>
+            <p>Vaktin durduğu o an, baktığımda gözlerine,</p>
+            <p>Ve anlarım ki yaşamak sensiz boşa gitmiş meğer.</p>
+            <p>Aşkın en zarif halisin sen bu hayatta,</p>
+            <p>Limanımsın benim, en güvenli sığınağım.</p>
 
-        <article class="poem">
-
-            <p>
-                Şiirler yetersiz kalır
-                seni yazmaya,
-            </p>
-
-            <p>
-                Eşsiz bir tebessümün var,
-                dünyalara değer.
-            </p>
-
-            <p>
-                Vaktin durduğu o an,
-                baktığımda gözlerine,
-            </p>
-
-            <p>
-                Ve anlarım ki yaşamak
-                sensiz boşa gitmiş meğer.
-            </p>
-
-            <p>
-                Aşkın en zarif halisin
-                sen bu hayatta,
-            </p>
-
-            <p>
-                Limanımsın benim,
-                en güvenli sığınağım.
-            </p>
-
-        </article>
+        </div>
 
 
+        <div class="poem">
 
-        <!-- 4. AKROSTİŞ -->
+            <p>Şimşek gibi çaktı gözlerin yüreğime,</p>
+            <p>En tatlı rüyam oldun, hiç uyanmak istemediğim.</p>
+            <p>Varlığınla çiçek açtı kurak bahçelerim,</p>
+            <p>Ver elini bana, birlikte yürüyelim geleceğe.</p>
+            <p>Aşk derler ya hani o tarif edilemeyen şeye,</p>
+            <p>Leylak kokulu adında buldum ben o hissi.</p>
 
-        <article class="poem">
-
-            <p>
-                Şimşek gibi çaktı gözlerin
-                yüreğime,
-            </p>
-
-            <p>
-                En tatlı rüyam oldun,
-                hiç uyanmak istemediğim.
-            </p>
-
-            <p>
-                Varlığınla çiçek açtı
-                kurak bahçelerim,
-            </p>
-
-            <p>
-                Ver elini bana,
-                birlikte yürüyelim geleceğe.
-            </p>
-
-            <p>
-                Aşk derler ya hani
-                o tarif edilemeyen şeye,
-            </p>
-
-            <p>
-                Leylak kokulu adında
-                buldum ben o hissi.
-            </p>
-
-        </article>
+        </div>
 
 
+        <div class="poem">
 
-        <!-- 5. AKROSTİŞ -->
+            <p>Şansın en güzel haliyle dokundun ömrüme,</p>
+            <p>Etrafa yaydığın ışık aydınlatır her yeri.</p>
+            <p>Vazgeçmek mümkün mü senin o sıcak gülüşünden?</p>
+            <p>Vurduğun yerden açar kalbimin en alımlı gülleri.</p>
+            <p>Aklımda tek bir dilek var artık sadece:</p>
+            <p>Lütfedip bir ömür kal benimle, gitme hiç geri...</p>
 
-        <article class="poem">
-
-            <p>
-                Şansın en güzel haliyle
-                dokundun ömrüme,
-            </p>
-
-            <p>
-                Etrafa yaydığın ışık
-                aydınlatır her yeri.
-            </p>
-
-            <p>
-                Vazgeçmek mümkün mü
-                senin o sıcak gülüşünden?
-            </p>
-
-            <p>
-                Vurduğun yerden açar
-                kalbimin en alımlı gülleri.
-            </p>
-
-            <p>
-                Aklımda tek bir dilek var
-                artık sadece:
-            </p>
-
-            <p>
-                Lütfedip bir ömür kal benimle,
-                gitme hiç geri...
-            </p>
-
-        </article>
+        </div>
 
 
-        <button
-            class="back"
-            onclick="go('home')"
-        >
+        <button class="back" onclick="showPage('home')">
             ← Geri Gel
         </button>
 
     </div>
 
 </section>
-
 
 
 <!-- =========================
      SEN VE BEN
 ========================= -->
 
-<section
-    id="youandme"
-    class="page"
->
+<section id="love" class="page">
 
-    <div class="section-card">
+    <div class="box">
 
-        <h2 class="page-title">
+        <h2 class="title">
             ❤️ Sen ve Ben
         </h2>
 
 
-        <div class="proposal">
+        <div class="letter">
 
             <p>
-
                 Seninle vakit geçirdikçe,
                 hayatımın renginin ve ritminin
                 ne kadar değiştiğini fark ettim.
-
-                Yanındayken zamanın nasıl
-                aktığını anlamıyorum ve
-                gözlerine her baktığımda
-                içimi kaplayan o huzuru
-                tarif etmek imkânsız.
-
+                Yanındayken zamanın nasıl aktığını
+                anlamıyorum ve gözlerine her baktığımda
+                içimi kaplayan o huzuru tarif etmek
+                imkânsız.
             </p>
 
 
             <p>
-
-                Ben artık sadece bu güzel
-                anları paylaşan biri değil,
-                her gününün, her tebessümünün
-                ve geleceğinin bir parçası
-                olmak istiyorum.
-
+                Ben artık sadece bu güzel anları
+                paylaşan biri değil, her gününün,
+                her tebessümünün ve geleceğinin
+                bir parçası olmak istiyorum.
                 Hayatı seninle yan yana,
                 el ele yürümek, her günüme
-                seninle başlayıp seninle
-                bitirmek en büyük dileğim.
-
+                seninle başlayıp seninle bitirmek
+                en büyük dileğim.
             </p>
 
 
             <p class="question">
 
                 Benimle bu güzel yolda
-                birlikte yürümeye,<br>
-
-                sevgilim olmaya
-                var mısın?
+                birlikte yürümeye,
+                <br>
+                sevgilim olmaya var mısın?
 
             </p>
 
 
-            <div class="love">
+            <div class="heart">
                 ❤️
             </div>
 
         </div>
 
 
-        <button
-            class="back"
-            onclick="go('home')"
-        >
+        <button class="back" onclick="showPage('home')">
             ← Geri Gel
         </button>
 
@@ -1143,108 +558,73 @@ h1 {
 </section>
 
 
-
 <script>
 
 /* =========================
-   SAYFA GEÇİŞLERİ
+   SAYFA DEĞİŞTİRME
 ========================= */
 
-const pages = [
-    "home",
-    "photos",
-    "poems",
-    "acrostics",
-    "youandme"
-];
+function showPage(pageName) {
 
-
-function go(id) {
+    const pages =
+        document.querySelectorAll(".page");
 
     pages.forEach(function(page) {
 
-        const element =
-            document.getElementById(page);
-
-        if(element) {
-
-            element.classList.toggle(
-                "active",
-                page === id
-            );
-
-        }
+        page.classList.remove("active");
 
     });
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    document
+        .getElementById(pageName)
+        .classList.add("active");
 
+    window.scrollTo(0, 0);
 }
 
 
 /* =========================
-   DÜŞEN GÜLLER VE KALPLER
+   DÜŞEN KALP VE GÜLLER
 ========================= */
 
-const falling =
-    document.getElementById("falling");
+const rain =
+    document.getElementById("rain");
 
-
-const symbols = [
-
+const objects = [
     "❤️",
-    "♥️",
-    "🌹",
-    "🌹",
-    "🌹",
-    "🤍",
     "❤️",
-    "🌹"
-
+    "🌹",
+    "🌹",
+    "🤍"
 ];
 
+for (let i = 0; i < 30; i++) {
 
-for(let i = 0; i < 32; i++) {
-
-    const element =
+    const item =
         document.createElement("span");
 
-    element.className = "fall";
+    item.className = "fall";
 
-
-    element.textContent =
-        symbols[
+    item.textContent =
+        objects[
             Math.floor(
-                Math.random()
-                * symbols.length
+                Math.random() * objects.length
             )
         ];
 
-
-    element.style.left =
+    item.style.left =
         Math.random() * 100 + "vw";
 
+    item.style.fontSize =
+        (15 + Math.random() * 22) + "px";
 
-    element.style.fontSize =
-        (14 + Math.random() * 24)
-        + "px";
+    item.style.animationDuration =
+        (10 + Math.random() * 12) + "s";
 
+    item.style.animationDelay =
+        (-Math.random() * 20) + "s";
 
-    element.style.animationDuration =
-        (11 + Math.random() * 13)
-        + "s";
-
-
-    element.style.animationDelay =
-        (-Math.random() * 20)
-        + "s";
-
-
-    falling.appendChild(element);
-
+    rain.appendChild(item);
 }
 
 </script>
