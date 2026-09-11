@@ -3,243 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Şevvalim ❤️</title>
+<title>Şevval'im ❤️</title>
 
 <style>
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     min-height: 100vh;
     font-family: Georgia, "Times New Roman", serif;
-    color: white;
+    background: linear-gradient(135deg, #ffe4ec, #ffd1dc, #fff0f4);
+    color: #5a2435;
     overflow-x: hidden;
-
-    background: repeating-linear-gradient(
-        0deg,
-        #050505 0px,
-        #050505 65px,
-        #174d2b 65px,
-        #174d2b 130px,
-        #8b1522 130px,
-        #8b1522 195px,
-        #b99b18 195px,
-        #b99b18 260px
-    );
 }
 
-/* Düşen güller ve kalpler */
-#rain {
+/* Düşen kalpler */
+.heart {
     position: fixed;
-    inset: 0;
-    overflow: hidden;
+    top: -30px;
+    font-size: 20px;
+    animation: fall linear infinite;
+    opacity: 0.65;
     pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Ana ekran */
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    position: relative;
     z-index: 1;
 }
 
-.fall {
-    position: absolute;
-    top: -60px;
-    animation: falling linear infinite;
-}
-
-@keyframes falling {
-    0% {
-        transform: translateY(-80px) rotate(0deg);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    50% {
-        transform: translate(40px, 50vh) rotate(180deg);
-    }
-
-    100% {
-        transform: translate(-40px, 110vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* Sayfalar */
-.page {
-    min-height: 100vh;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 25px 15px 70px;
-    position: relative;
-    z-index: 2;
-}
-
-.page.active {
-    display: flex;
-}
-
-/* Ana kutu */
-.box {
+.card {
     width: 100%;
-    max-width: 900px;
-    background: rgba(0,0,0,0.72);
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 25px;
-    padding: 35px 22px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    backdrop-filter: blur(6px);
+    max-width: 850px;
+    padding: 55px 35px;
+    text-align: center;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(100,30,50,0.15);
+    backdrop-filter: blur(12px);
 }
 
-/* Ana sayfa */
-.home {
-    text-align: center;
+.small {
+    font-size: 16px;
+    letter-spacing: 4px;
+    font-style: italic;
+    margin-bottom: 12px;
 }
 
 h1 {
-    font-size: clamp(50px, 12vw, 90px);
+    font-size: clamp(48px, 12vw, 90px);
     font-style: italic;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-shadow: 0 5px 20px black;
+    font-weight: 900;
+    margin-bottom: 25px;
+    color: #8e2947;
+    text-shadow: 2px 3px 10px rgba(100,20,40,0.15);
 }
 
-.intro {
-    font-size: clamp(17px, 4vw, 23px);
-    line-height: 1.7;
+.divider {
+    width: 90px;
+    height: 2px;
+    background: #a93655;
+    margin: 0 auto 30px;
+}
+
+.love-text {
+    max-width: 650px;
+    margin: auto;
+    font-size: clamp(18px, 3vw, 24px);
+    line-height: 1.9;
     font-style: italic;
-    margin-bottom: 30px;
+}
+
+.signature {
+    margin-top: 25px;
+    font-size: 18px;
+    font-style: italic;
 }
 
 /* Butonlar */
 .buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
-    max-width: 700px;
-    margin: auto;
 }
 
-.btn {
-    min-height: 65px;
-    border: 1px solid rgba(255,255,255,0.45);
-    border-radius: 18px;
-
-    background: linear-gradient(
-        145deg,
-        rgba(255,255,255,0.18),
-        rgba(0,0,0,0.45)
-    );
-
+button {
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    background: #8e2947;
     color: white;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 19px;
-    font-weight: bold;
+    font-family: Georgia, serif;
+    font-size: 17px;
     font-style: italic;
-
     cursor: pointer;
-    transition: 0.25s;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(100,20,40,0.2);
 }
 
-.btn:hover {
+button:hover {
     transform: translateY(-4px);
-    background: rgba(255,255,255,0.25);
+    background: #a93655;
+    box-shadow: 0 12px 25px rgba(100,20,40,0.3);
 }
 
-/* İç sayfa başlığı */
-.title {
+/* İçerik ekranları */
+.content {
+    display: none;
+    min-height: 100vh;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.content-box {
+    max-width: 800px;
+    margin: 30px auto;
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 40px 25px;
+    box-shadow: 0 20px 60px rgba(100,30,50,0.15);
     text-align: center;
-    font-size: clamp(35px, 8vw, 60px);
+}
+
+.content h2 {
+    font-size: clamp(35px, 8vw, 55px);
     font-style: italic;
+    color: #8e2947;
     margin-bottom: 30px;
 }
 
-/* Şiir */
 .poem {
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding: 20px 5px;
-}
-
-.poem p {
-    font-size: clamp(17px, 4vw, 22px);
-    line-height: 1.8;
-    font-style: italic;
-    margin: 7px 0;
-}
-
-/* Sen ve Ben */
-.letter {
-    text-align: center;
-}
-
-.letter p {
-    font-size: clamp(18px, 4vw, 23px);
+    margin-bottom: 30px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.5);
+    font-size: 19px;
     line-height: 1.9;
     font-style: italic;
-    margin-bottom: 25px;
 }
 
-.question {
-    font-size: clamp(24px, 5vw, 35px) !important;
+.poem-title {
+    font-size: 24px;
     font-weight: bold;
+    margin-bottom: 15px;
+    color: #8e2947;
 }
 
-.heart {
-    font-size: 55px;
-    text-align: center;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    50% {
-        transform: scale(1.15);
-    }
-}
-
-/* Geri butonu */
 .back {
-    display: block;
-    margin: 30px auto 0;
-
-    padding: 13px 28px;
-
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 50px;
-
-    background: rgba(0,0,0,0.65);
-
-    color: white;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 17px;
-    font-weight: bold;
-    font-style: italic;
-
-    cursor: pointer;
+    margin-top: 10px;
+    background: transparent;
+    color: #8e2947;
+    border: 1px solid #8e2947;
 }
 
 .back:hover {
-    background: rgba(255,255,255,0.2);
+    background: #8e2947;
+    color: white;
 }
 
 /* Telefon */
 @media (max-width: 600px) {
-
-    .box {
-        padding: 25px 15px;
+    .card {
+        padding: 45px 20px;
+        border-radius: 25px;
     }
 
-    .buttons {
-        grid-template-columns: 1fr;
+    .love-text {
+        font-size: 18px;
+        line-height: 1.8;
     }
 
-    .btn {
-        min-height: 58px;
+    button {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .content-box {
+        padding: 35px 18px;
+    }
+
+    .poem {
+        font-size: 17px;
     }
 }
 </style>
@@ -247,384 +220,160 @@ h1 {
 
 <body>
 
-<!-- DÜŞENLER -->
-<div id="rain"></div>
+<!-- Düşen kalpler -->
+<div class="heart" style="left:5%; animation-duration:12s;">❤️</div>
+<div class="heart" style="left:15%; animation-duration:16s; animation-delay:2s;">💗</div>
+<div class="heart" style="left:28%; animation-duration:13s; animation-delay:5s;">💕</div>
+<div class="heart" style="left:42%; animation-duration:18s; animation-delay:1s;">❤️</div>
+<div class="heart" style="left:56%; animation-duration:14s; animation-delay:4s;">💗</div>
+<div class="heart" style="left:70%; animation-duration:17s; animation-delay:3s;">💕</div>
+<div class="heart" style="left:83%; animation-duration:15s; animation-delay:6s;">❤️</div>
+<div class="heart" style="left:94%; animation-duration:19s; animation-delay:2s;">💗</div>
 
 
-<!-- =========================
-     ANA SAYFA
-========================= -->
+<!-- ANA SAYFA -->
+<section class="page" id="home">
+    <div class="card">
 
-<section id="home" class="page active">
+        <div class="small">Sana özel bir dünya</div>
 
-    <div class="box home">
+        <h1>Şevval'im ❤️</h1>
 
-        <h1>Şevvalim ❤️</h1>
+        <div class="divider"></div>
 
-        <p class="intro">
-            Kalbimdeki en güzel hikâyenin başrolü sensin.
-            <br>
-            Bu küçük dünya sadece senin için...
-        </p>
+        <div class="love-text">
+            Sen geldin, kalbim kendine bir yuva buldu,<br>
+            Gözlerin en karanlık geceme sabah oldu.<br>
+            Ne zaman adını ansam içim umutla doluyor,<br>
+            Aşk dediğim her şey, sende anlam buluyor.
+        </div>
+
+        <div class="signature">
+            Seni anlatmaya kelimeler yetmez...
+        </div>
 
         <div class="buttons">
-
-            <button class="btn" onclick="showPage('photos')">
-                📸 Fotoğraflar
-            </button>
-
-            <button class="btn" onclick="showPage('poems')">
-                🍷 Şiirler
-            </button>
-
-            <button class="btn" onclick="showPage('acrostic')">
-                📜 Akrostişler
-            </button>
-
-            <button class="btn" onclick="showPage('love')">
-                ❤️ Sen ve Ben
-            </button>
-
+            <button onclick="openPage('poems')">Şiirler 🍷</button>
+            <button onclick="openPage('acrostic')">Akrostiş 📜</button>
+            <button onclick="openPage('diary')">Günlük 📔</button>
         </div>
 
     </div>
-
 </section>
 
 
-<!-- =========================
-     FOTOĞRAFLAR
-========================= -->
+<!-- ŞİİRLER -->
+<section class="content" id="poems">
+    <div class="content-box">
 
-<section id="photos" class="page">
+        <h2>Şiirler 🍷</h2>
 
-    <div class="box">
+        <div class="poem">
+            <div class="poem-title">Aşk</div>
 
-        <h2 class="title">
-            📸 Fotoğraflar
-        </h2>
-
-        <div style="
-            text-align:center;
-            font-size:20px;
-            font-style:italic;
-            line-height:1.8;
-        ">
-
-            <p>
-                Buraya birlikte çekildiğiniz
-                fotoğraflar gelecek. ❤️
-            </p>
-
-            <br>
-
-            <p>
-                Fotoğrafları GitHub'a yüklediğimizde
-                bu bölüme yerleştirebiliriz.
-            </p>
-
+            Aşk, adını kalbime yazdığım ilk cümle,<br>
+            Gözlerine baktığımda sustu bütün dünya.<br>
+            Sen yanımdayken zaman bile yavaşlıyor,<br>
+            Kalbim yalnızca senin için atıyor.
         </div>
 
-        <button class="back" onclick="showPage('home')">
-            ← Geri Gel
-        </button>
+        <div class="poem">
+            <div class="poem-title">Bir Tek Sen</div>
+
+            Bir tek elini tutmak yetiyor bana,<br>
+            Bir tek gülüşün bütün günümü güzelleştiriyor.<br>
+            Herkes kendi hikâyesini yaşarken,<br>
+            Benim en güzel hikâyem sen oluyorsun.
+        </div>
+
+        <button class="back" onclick="goHome()">← Geri dön</button>
 
     </div>
-
 </section>
 
 
-<!-- =========================
-     ŞİİRLER
-========================= -->
+<!-- AKROSTİŞ -->
+<section class="content" id="acrostic">
+    <div class="content-box">
 
-<section id="poems" class="page">
-
-    <div class="box">
-
-        <h2 class="title">
-            🍷 Şiirler
-        </h2>
+        <h2>Şevval 📜</h2>
 
         <div class="poem">
 
-            <p>
-                Bakışlarında kaybolmak,
-                bulduğum en güzel yol.
-            </p>
-
-            <p>
-                Var olduğun her yer
-                benim evim sayılır.
-            </p>
-
-            <p>
-                Kalbimin her atışı,
-                senin adını fısıldayan
-                gizli bir dua gibi.
-            </p>
-
-            <p>
-                Seninle tanışmak tesadüf değil,
-                ömrüme yazılmış en zarif mucizeydi.
-            </p>
-
-            <p>
-                Ruhumun eksik kalan yarısını
-                sen tamamladın.
-            </p>
-
-            <p>
-                Sadece ellerini tutmak bile
-                dünyadaki tüm fırtınaları susturuyor.
-            </p>
-
-            <p>
-                Sen benim bu hayattaki
-                tek sığınağım,
-                en derin sevdamsın.
-            </p>
-
-            <p>
-                Gözlerin gözlerime değdiğinde
-                zaman anlamını yitiriyor.
-            </p>
-
-            <p>
-                Ömrümün geri kalanını
-                sadece senin kokunla
-                uyuyup uyanarak geçirmek istiyorum.
-            </p>
-
-            <p>
-                Ben seni sadece bir mevsim değil,
-                her nefesimde bir ömür seveceğim.
-            </p>
+            <b>Ş</b>imdi hayatımda güzel olan ne varsa seninle,<br>
+            <b>E</b>llerini tuttuğumda huzur buluyor kalbim,<br>
+            <b>V</b>arlığın en güzel tesadüfüm oldu,<br>
+            <b>V</b>azgeçmek istemediğim tek hikâyesin,<br>
+            <b>A</b>şkınla her gün yeniden gülümsüyorum,<br>
+            <b>L</b>ütfen hep hayatımda kal. ❤️
 
         </div>
 
-        <button class="back" onclick="showPage('home')">
-            ← Geri Gel
-        </button>
+        <button class="back" onclick="goHome()">← Geri dön</button>
 
     </div>
-
 </section>
 
 
-<!-- =========================
-     AKROSTİŞLER
-========================= -->
+<!-- GÜNLÜK -->
+<section class="content" id="diary">
+    <div class="content-box">
 
-<section id="acrostic" class="page">
-
-    <div class="box">
-
-        <h2 class="title">
-            📜 Akrostişler
-        </h2>
-
+        <h2>Günlük 📔</h2>
 
         <div class="poem">
 
-            <p>Şehrin tüm gürültüsünü susturan sesin,</p>
-            <p>En güzel mevsimi getirir yüreğime.</p>
-            <p>Varlığın bir ömre bedel, öyle derin,</p>
-            <p>Vazgeçilmez bir huzur katarsın her güne.</p>
-            <p>Anlatmaya yetmez kelimeler hislerimi,</p>
-            <p>Lütuf gibi geldin, aydınlattın dünyamı.</p>
+            <div class="poem-title">Bugünün Notu</div>
+
+            Bugün de aklımdan geçen ilk insan sendin.<br><br>
+
+            Bazen sana söylemek istediğim o kadar çok şey
+            oluyor ki kelimeler yetersiz kalıyor.<br><br>
+
+            Ama bildiğim bir şey var:<br><br>
+
+            Hayatıma girdiğin için mutluyum.<br>
+            Gülüşünü gördüğüm için mutluyum.<br>
+            Ve seni sevdiğim için mutluyum. ❤️
 
         </div>
 
-
-        <div class="poem">
-
-            <p>Şahit olsun gökyüzü bu sonsuz sevgiye,</p>
-            <p>Ellerin ellerimdeyken zaman dursun isterim.</p>
-            <p>Vakit senli olunca döner bir bayrama,</p>
-            <p>Vurulmuşum gözlerine, başka ne dilerim?</p>
-            <p>Adı yankılanır kalbimin her köşesinde,</p>
-            <p>Leyla ile Mecnun halt etmiş bu aşka!</p>
-
-        </div>
-
-
-        <div class="poem">
-
-            <p>Şiirler yetersiz kalır seni yazmaya,</p>
-            <p>Eşsiz bir tebessümün var, dünyalara değer.</p>
-            <p>Vaktin durduğu o an, baktığımda gözlerine,</p>
-            <p>Ve anlarım ki yaşamak sensiz boşa gitmiş meğer.</p>
-            <p>Aşkın en zarif halisin sen bu hayatta,</p>
-            <p>Limanımsın benim, en güvenli sığınağım.</p>
-
-        </div>
-
-
-        <div class="poem">
-
-            <p>Şimşek gibi çaktı gözlerin yüreğime,</p>
-            <p>En tatlı rüyam oldun, hiç uyanmak istemediğim.</p>
-            <p>Varlığınla çiçek açtı kurak bahçelerim,</p>
-            <p>Ver elini bana, birlikte yürüyelim geleceğe.</p>
-            <p>Aşk derler ya hani o tarif edilemeyen şeye,</p>
-            <p>Leylak kokulu adında buldum ben o hissi.</p>
-
-        </div>
-
-
-        <div class="poem">
-
-            <p>Şansın en güzel haliyle dokundun ömrüme,</p>
-            <p>Etrafa yaydığın ışık aydınlatır her yeri.</p>
-            <p>Vazgeçmek mümkün mü senin o sıcak gülüşünden?</p>
-            <p>Vurduğun yerden açar kalbimin en alımlı gülleri.</p>
-            <p>Aklımda tek bir dilek var artık sadece:</p>
-            <p>Lütfedip bir ömür kal benimle, gitme hiç geri...</p>
-
-        </div>
-
-
-        <button class="back" onclick="showPage('home')">
-            ← Geri Gel
-        </button>
+        <button class="back" onclick="goHome()">← Geri dön</button>
 
     </div>
-
-</section>
-
-
-<!-- =========================
-     SEN VE BEN
-========================= -->
-
-<section id="love" class="page">
-
-    <div class="box">
-
-        <h2 class="title">
-            ❤️ Sen ve Ben
-        </h2>
-
-
-        <div class="letter">
-
-            <p>
-                Seninle vakit geçirdikçe,
-                hayatımın renginin ve ritminin
-                ne kadar değiştiğini fark ettim.
-                Yanındayken zamanın nasıl aktığını
-                anlamıyorum ve gözlerine her baktığımda
-                içimi kaplayan o huzuru tarif etmek
-                imkânsız.
-            </p>
-
-
-            <p>
-                Ben artık sadece bu güzel anları
-                paylaşan biri değil, her gününün,
-                her tebessümünün ve geleceğinin
-                bir parçası olmak istiyorum.
-                Hayatı seninle yan yana,
-                el ele yürümek, her günüme
-                seninle başlayıp seninle bitirmek
-                en büyük dileğim.
-            </p>
-
-
-            <p class="question">
-
-                Benimle bu güzel yolda
-                birlikte yürümeye,
-                <br>
-                sevgilim olmaya var mısın?
-
-            </p>
-
-
-            <div class="heart">
-                ❤️
-            </div>
-
-        </div>
-
-
-        <button class="back" onclick="showPage('home')">
-            ← Geri Gel
-        </button>
-
-    </div>
-
 </section>
 
 
 <script>
 
-/* =========================
-   SAYFA DEĞİŞTİRME
-========================= */
+function openPage(page) {
 
-function showPage(pageName) {
+    document.getElementById("home").style.display = "none";
 
-    const pages =
-        document.querySelectorAll(".page");
-
-    pages.forEach(function(page) {
-
-        page.classList.remove("active");
-
+    document.querySelectorAll(".content").forEach(function(section) {
+        section.style.display = "none";
     });
 
-    document
-        .getElementById(pageName)
-        .classList.add("active");
+    document.getElementById(page).style.display = "block";
 
-    window.scrollTo(0, 0);
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
+function goHome() {
 
-/* =========================
-   DÜŞEN KALP VE GÜLLER
-========================= */
+    document.querySelectorAll(".content").forEach(function(section) {
+        section.style.display = "none";
+    });
 
-const rain =
-    document.getElementById("rain");
+    document.getElementById("home").style.display = "flex";
 
-const objects = [
-    "❤️",
-    "❤️",
-    "🌹",
-    "🌹",
-    "🤍"
-];
-
-for (let i = 0; i < 30; i++) {
-
-    const item =
-        document.createElement("span");
-
-    item.className = "fall";
-
-    item.textContent =
-        objects[
-            Math.floor(
-                Math.random() * objects.length
-            )
-        ];
-
-    item.style.left =
-        Math.random() * 100 + "vw";
-
-    item.style.fontSize =
-        (15 + Math.random() * 22) + "px";
-
-    item.style.animationDuration =
-        (10 + Math.random() * 12) + "s";
-
-    item.style.animationDelay =
-        (-Math.random() * 20) + "s";
-
-    rain.appendChild(item);
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 </script>
